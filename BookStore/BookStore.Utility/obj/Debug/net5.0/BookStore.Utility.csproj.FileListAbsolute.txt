@@ -1,0 +1,14 @@
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\BookStore.Utility.deps.json
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\BookStore.Utility.dll
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\ref\BookStore.Utility.dll
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\BookStore.Utility.pdb
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\BookStore.Models.dll
+E:\myProjects\BookStore\BookStore\BookStore.Utility\bin\Debug\net5.0\BookStore.Models.pdb
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.csproj.AssemblyReference.cache
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.GeneratedMSBuildEditorConfig.editorconfig
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.AssemblyInfoInputs.cache
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.AssemblyInfo.cs
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.csproj.CoreCompileInputs.cache
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.dll
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\ref\BookStore.Utility.dll
+E:\myProjects\BookStore\BookStore\BookStore.Utility\obj\Debug\net5.0\BookStore.Utility.pdb

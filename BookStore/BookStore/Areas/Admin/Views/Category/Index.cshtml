@@ -1,0 +1,68 @@
+﻿@model CategoryViewModel 
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new category</h4>
+
+                <form class="forms-sample" method="post" asp-action="Upsert">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Category.CategoryId" />
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input asp-for="Category.Name" type="text" class="form-control" placeholder="Category Name">
+                        <span asp-validation-for="Category.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input asp-for="Category.Description" type="text" class="form-control" placeholder="Description">
+                        <span asp-validation-for="Category.Description" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Category Data</h4>
+                <div class="table-responsive">
+                    <table class="table" id="order-listing">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ctaegory Name</th>
+                                <th>Description</th>
+                                <th>Edit / Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <tr>
+                                    <td>@category.CategoryId</td>
+                                    <td>@category.Name</td>
+                                    <td>@category.Description</td>
+                                    <td>
+                                        <a asp-route-id="@category.CategoryId" asp-action="Index" type="submit" style="width:50%" class="btn btn-success p-2">Edit</a>
+                                        <a asp-route-id="@category.CategoryId" asp-action="Delete" style="width:50%" class="btn btn-danger p-2">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

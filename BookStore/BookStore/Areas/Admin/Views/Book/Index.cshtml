@@ -1,0 +1,153 @@
+﻿@model Book
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new Book</h4>
+
+                <form class="forms-sample" method="post" asp-action="Upsert" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="BookId" />
+                    
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-push-12">
+                            <div class="form-group">
+                                <label>ISBN</label>
+                                <input asp-for="ISBN" type="text" class="form-control" placeholder="Ex: 978-3-16-148410-0">
+                                <span asp-validation-for="ISBN" class="text-danger"></span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Title</label>
+                                    <input asp-for="Title" type="text" class="form-control" placeholder="Ex: Clean Code">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Author</label>
+                                    <input asp-for="Author" type="text" class="form-control" placeholder="Ex: Robert C. Martin">
+                                    <span asp-validation-for="Author" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Publisher</label>
+                                    <input asp-for="Publisher" type="text" class="form-control" placeholder="Ex: O’Reilly">
+                                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Category</label>
+                                    <input asp-for="CategoryId" type="text" class="form-control" placeholder="Ex: Adventure">
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Edition</label>
+                                    <input asp-for="Edition" type="text" class="form-control" placeholder="Ex: First edition">
+                                    <span asp-validation-for="Edition" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Publication Year</label>
+                                    <input asp-for="PublicationYear" type="text" class="form-control" placeholder="Ex: 2008">
+                                    <span asp-validation-for="PublicationYear" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Price</label>
+                                    <input asp-for="PurchasePrice" value="0" type="text" class="form-control">
+                                    <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Offering Price</label>
+                                    <input asp-for="OfferingPrice" value="0" type="text" class="form-control">
+                                    <span asp-validation-for="OfferingPrice" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea rows="10" asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            
+                        </div>
+                        <div class="col-sm-4 col-sm-pull-12">
+                            <div class="custom-file-container" style="max-width: 400px" data-upload-id="myUniqueUploadId">
+                                <label>Upload Book Image</label>
+                                <label class="custom-file-container__custom-file">
+                                    <input type="file"
+                                           name="files"
+                                           class="custom-file-container__custom-file__custom-file-input"
+                                           accept="image/*"
+                                           aria-label="Choose File" />
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                </label>
+                                <a href="javascript:void(0)"
+                                   class="custom-file-container__image-clear btn btn-sm btn-danger p-1 mt-2"
+                                   title="Clear Image">Clear</a>
+                                <div class="custom-file-container__image-preview mt-1" style="height:498px">
+                                </div>
+                            </div>
+                            @if (Model != null)
+                            {
+                                <img src="@Model.ImageUrl" width="200" height="200" />
+                            }
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Category Data</h4>
+                <div class="table-responsive">
+                    <table class="table" id="order-listing">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ctaegory Name</th>
+                                <th>Description</th>
+                                <th>Edit / Delete</th>
+                            </tr>
+                        </thead>
+                        @*<tbody>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <tr>
+                                        <td>@category.CategoryId</td>
+                                        <td>@category.Name</td>
+                                        <td>@category.Description</td>
+                                        <td>
+                                            <a asp-route-id="@category.CategoryId" asp-action="Index" type="submit" style="width:50%" class="btn btn-success p-2">Edit</a>
+                                            <a asp-route-id="@category.CategoryId" asp-action="Delete" style="width:50%" class="btn btn-danger p-2">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>*@
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/file-upload-with-preview.min.js"></script>
+    <script>
+        var upload = new FileUploadWithPreview("myUniqueUploadId");
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

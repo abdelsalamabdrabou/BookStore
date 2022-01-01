@@ -1,0 +1,17 @@
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.DataAcess.deps.json
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.DataAcess.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\ref\BookStore.DataAcess.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.DataAcess.pdb
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.Models.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.Utility.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.Models.pdb
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\bin\Debug\net5.0\BookStore.Utility.pdb
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.csproj.AssemblyReference.cache
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.AssemblyInfoInputs.cache
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.AssemblyInfo.cs
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.csproj.CoreCompileInputs.cache
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.csproj.CopyComplete
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\ref\BookStore.DataAcess.dll
+E:\myProjects\BookStore\BookStore\BookStore.DataAcess\obj\Debug\net5.0\BookStore.DataAcess.pdb
