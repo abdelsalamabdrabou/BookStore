@@ -1,0 +1,48 @@
+﻿<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new role</h4>
+                <partial name="RoleForm" model="new Role()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Roles Data</h4>
+                <div class="table-responsive">
+                    <table class="table text-center" id="rolesTable" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="toastHeader">
+      <strong class="me-auto">Dashboard</strong>
+      <small>Just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toastBody">
+       
+    </div>
+  </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/datatable/roles.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

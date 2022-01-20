@@ -1,4 +1,5 @@
-﻿@model Book
+﻿@using BookStore.Utility.ConstantsStringSettings
+@model BookVM
 
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -6,69 +7,84 @@
             <div class="card-body">
                 <h4 class="card-title">Add new Book</h4>
 
-                <form class="forms-sample" method="post" asp-action="Upsert" enctype="multipart/form-data">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="BookId" />
+                    <input type="hidden" asp-for="Book.BookId" />
                     
                     <div class="row">
                         <div class="col-sm-8 col-sm-push-12">
                             <div class="form-group">
                                 <label>ISBN</label>
-                                <input asp-for="ISBN" type="text" class="form-control" placeholder="Ex: 978-3-16-148410-0">
-                                <span asp-validation-for="ISBN" class="text-danger"></span>
+                                <input asp-for="Book.ISBN" type="text" class="form-control" placeholder="Ex: 978-3-16-148410-0">
+                                <span asp-validation-for="Book.ISBN" class="text-danger"></span>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label>Title</label>
-                                    <input asp-for="Title" type="text" class="form-control" placeholder="Ex: Clean Code">
-                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                    <input asp-for="Book.Title" type="text" class="form-control" placeholder="Ex: Clean Code">
+                                    <span asp-validation-for="Book.Title" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Author</label>
-                                    <input asp-for="Author" type="text" class="form-control" placeholder="Ex: Robert C. Martin">
-                                    <span asp-validation-for="Author" class="text-danger"></span>
+                                    <input asp-for="Book.Author" type="text" class="form-control" placeholder="Ex: Robert C. Martin">
+                                    <span asp-validation-for="Book.Author" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label>Publisher</label>
-                                    <input asp-for="Publisher" type="text" class="form-control" placeholder="Ex: O’Reilly">
-                                    <span asp-validation-for="Publisher" class="text-danger"></span>
+                                    <input asp-for="Book.Publisher" type="text" class="form-control" placeholder="Ex: O’Reilly">
+                                    <span asp-validation-for="Book.Publisher" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Category</label>
-                                    <input asp-for="CategoryId" type="text" class="form-control" placeholder="Ex: Adventure">
-                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                    <select asp-for="Book.CategoryId" asp-items="@Model.CategoryList" class="form-control"></select>
+                                    <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label>Edition</label>
-                                    <input asp-for="Edition" type="text" class="form-control" placeholder="Ex: First edition">
-                                    <span asp-validation-for="Edition" class="text-danger"></span>
+                                    <input asp-for="Book.Edition" type="text" class="form-control" placeholder="Ex: First edition">
+                                    <span asp-validation-for="Book.Edition" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Publication Year</label>
-                                    <input asp-for="PublicationYear" type="text" class="form-control" placeholder="Ex: 2008">
-                                    <span asp-validation-for="PublicationYear" class="text-danger"></span>
+                                    <input asp-for="Book.PublicationYear" type="text" class="form-control" placeholder="Ex: 2008">
+                                    <span asp-validation-for="Book.PublicationYear" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label>Price</label>
-                                    <input asp-for="PurchasePrice" value="0" type="text" class="form-control">
-                                    <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                                    <input asp-for="Book.PurchasePrice" type="text" class="form-control">
+                                    <span asp-validation-for="Book.PurchasePrice" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Offering Price</label>
-                                    <input asp-for="OfferingPrice" value="0" type="text" class="form-control">
-                                    <span asp-validation-for="OfferingPrice" class="text-danger"></span>
+                                    <input asp-for="Book.OfferingPrice" type="text" class="form-control">
+                                    <span asp-validation-for="Book.OfferingPrice" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Quantity</label>
+                                    <input asp-for="Book.Quantity" type="text" min="1" class="form-control">
+                                    <span asp-validation-for="Book.Quantity" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Status</label>
+                                    <select asp-for="Book.Status" type="text" class="form-control">
+                                        <option value="@Status.InStock.ToString().ToLower()">In Stock</option>
+                                        <option value="@Status.OutOfStock.ToString().ToLower()">Out of Stock</option>
+                                    </select>
+                                    <span asp-validation-for="Book.Status" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea rows="10" asp-for="Description" class="form-control"></textarea>
-                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <textarea rows="10" asp-for="Book.Description" class="form-control"></textarea>
+                                <span asp-validation-for="Book.Description" class="text-danger"></span>
                             </div>
 
                             
@@ -93,51 +109,23 @@
                             </div>
                             @if (Model != null)
                             {
-                                <img src="@Model.ImageUrl" width="200" height="200" />
+                                <img src="@Model.Book.ImageUrl" width="200" height="200" />
                             }
                         </div>
 
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            @if (Model.Book.BookId == Guid.Empty)
+                            {
+                                <button asp-action="Add" type="submit" class="btn btn-primary mr-2">Add</button>
+                            }else
+                            {
+                                <button asp-action="Update" type="submit" class="btn btn-primary mr-2">Update</button>
+                            }
                             <button class="btn btn-light">Cancel</button>
                         </div>
                         
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Category Data</h4>
-                <div class="table-responsive">
-                    <table class="table" id="order-listing">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Ctaegory Name</th>
-                                <th>Description</th>
-                                <th>Edit / Delete</th>
-                            </tr>
-                        </thead>
-                        @*<tbody>
-                                @foreach (var category in Model.Categories)
-                                {
-                                    <tr>
-                                        <td>@category.CategoryId</td>
-                                        <td>@category.Name</td>
-                                        <td>@category.Description</td>
-                                        <td>
-                                            <a asp-route-id="@category.CategoryId" asp-action="Index" type="submit" style="width:50%" class="btn btn-success p-2">Edit</a>
-                                            <a asp-route-id="@category.CategoryId" asp-action="Delete" style="width:50%" class="btn btn-danger p-2">Delete</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>*@
-                    </table>
-                </div>
             </div>
         </div>
     </div>

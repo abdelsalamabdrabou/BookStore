@@ -1,6 +1,7 @@
 ﻿using BookStore.Data;
 using BookStore.DataAcess.Repository.IRepository;
 using BookStore.Models;
+using BookStore.Utility.ConstantsStringSettings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,6 @@ namespace BookStore.DataAcess.Repository
             _db = db;
         }
 
-        public async Task<Book> GetByIdAsync(Guid id, string isbn)
-        {
-            return await _db.Books.FindAsync(id, isbn);
-        }
         public async Task UpdateAsync(Book book)
         {
             var getBookFromDb = await _db.Books.FindAsync(book.BookId);
@@ -37,6 +34,8 @@ namespace BookStore.DataAcess.Repository
                 getBookFromDb.ImageUrl = book.ImageUrl;
                 getBookFromDb.Description = book.Description;
                 getBookFromDb.OfferingPrice = book.OfferingPrice;
+                getBookFromDb.Status = book.Status;
+                getBookFromDb.Quantity = book.Status == Status.InStock.ToString().ToLower() ? book.Quantity : 0;
             }
         }
     }
