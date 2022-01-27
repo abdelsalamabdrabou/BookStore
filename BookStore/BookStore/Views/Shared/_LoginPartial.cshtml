@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -19,6 +19,10 @@
             <span class="nav-profile-name">@User.Identity.Name</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+            <a class="dropdown-item" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                <i class="mdi mdi-home text-dark"></i>
+                Home
+            </a>
             <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Settings">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings

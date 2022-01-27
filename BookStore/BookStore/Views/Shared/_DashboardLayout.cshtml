@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BookStore.Utility.ConstantsStringSettings
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -188,48 +189,51 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">
-                            <i class="mdi mdi-view-list menu-icon"></i>
-                            <span class="menu-title">Categories</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#books" aria-expanded="false" aria-controls="books">
-                          <i class="mdi mdi-library-books menu-icon"></i>
-                          <span class="menu-title">Books</span>
-                          <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="books">
-                          <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="Book" asp-action="Index">Add Book</a></li>
-                            <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="Book" asp-action="ExistingBooks">Existing Books</a></li>
-                          </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
                             <i class="mdi mdi-cart menu-icon"></i>
                             <span class="menu-title">Orders</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Roles" asp-action="Index">
-                            <i class="mdi mdi-account-settings menu-icon"></i>
-                            <span class="menu-title">Roles</span>
+                    @if (User.IsInRole(Roles.Admin.ToString()))
+                    {
+                        <li class="nav-item">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">
+                            <i class="mdi mdi-view-list menu-icon"></i>
+                            <span class="menu-title">Categories</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Permission" asp-action="Index">
-                            <i class="mdi mdi-security menu-icon"></i>
-                            <span class="menu-title">Permissions</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
-                            <i class="mdi mdi-account-multiple menu-icon"></i>
-                            <span class="menu-title">Users</span>
-                        </a>
-                    </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#books" aria-expanded="false" aria-controls="books">
+                              <i class="mdi mdi-library-books menu-icon"></i>
+                              <span class="menu-title">Books</span>
+                              <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="books">
+                              <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="Book" asp-action="Index">Add Book</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-area="Admin" asp-controller="Book" asp-action="ExistingBooks">Existing Books</a></li>
+                              </ul>
+                            </div>
+                        </li>                    
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Roles" asp-action="Index">
+                                <i class="mdi mdi-account-settings menu-icon"></i>
+                                <span class="menu-title">Roles</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Permission" asp-action="Index">
+                                <i class="mdi mdi-security menu-icon"></i>
+                                <span class="menu-title">Permissions</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                <i class="mdi mdi-account-multiple menu-icon"></i>
+                                <span class="menu-title">Users</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
             </nav>
             <!-- partial -->
