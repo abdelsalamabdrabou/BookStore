@@ -937,5 +937,36 @@ C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debu
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\BookStore.Views.pdb
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\BookStore.csproj.CopyComplete
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\BookStore.genruntimeconfig.cache
+<<<<<<< HEAD
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Customer\Views\Product\_Categories.cshtml.g.cs
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Customer\Views\Product\_BestSellers.cshtml.g.cs
+=======
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Book\ExistingBooks.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\ManageRoles.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\Index.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\RoleForm.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Roles\ManagePermissions.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Lockout.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.Logging.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+>>>>>>> 14554e9cde5bfbb7ad342f21f9252904ffd3ecae
