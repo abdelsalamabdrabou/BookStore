@@ -22,12 +22,13 @@ namespace BookStore.Utility.ModelsConfiguration
             builder.Property(b => b.Edition).IsRequired();
             builder.Property(b => b.ISBN).IsRequired();
             builder.Property(b => b.Title).IsRequired();
-            builder.Property(b => b.PurchasePrice).IsRequired();
-            builder.Property(b => b.OfferingPrice).HasDefaultValue(0);
+            builder.Property(b => b.Price).IsRequired();
+            builder.Property(b => b.DiscountRate).HasDefaultValue(0);
             builder.Property(b => b.Publisher).IsRequired();
             builder.Property(b => b.PublicationYear).IsRequired();
             builder.Property(b => b.Quantity).IsRequired();
             builder.Property(b => b.Status).IsRequired();
+            builder.Ignore(b => b.OfferingPrice);
         }
     }
 }

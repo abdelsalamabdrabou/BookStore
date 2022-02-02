@@ -18,8 +18,8 @@ namespace BookStore.Areas.Admin.Controllers
 
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -38,7 +38,11 @@ namespace BookStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _roleManager.CreateAsync(new IdentityRole(role.Name));
+                if (!await _roleManager.RoleExistsAsync(role.Name))
+                    await _roleManager.CreateAsync(new IdentityRole(role.Name));
+                else
+                    TempData["Message"] = "Role is exist";
+
                 return RedirectToAction(nameof(Index));
             }
 

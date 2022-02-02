@@ -3,3 +3,12 @@
     word-break: break-all;
     white-space: normal !important
 }
+
+.profileImage {
+    background-color: white;
+    object-fit: cover;
+    width: 292px;
+    height: 292px;
+    border: 2px dotted #dcdcdc;
+    margin-top: 16px;
+}

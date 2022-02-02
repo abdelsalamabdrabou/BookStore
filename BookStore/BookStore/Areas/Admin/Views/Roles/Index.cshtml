@@ -4,6 +4,7 @@
             <div class="card-body">
                 <h4 class="card-title">Add new role</h4>
                 <partial name="RoleForm" model="new Role()" />
+                <span class="text-danger">@TempData["Message"]</span>
             </div>
         </div>
     </div>

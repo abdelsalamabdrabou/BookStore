@@ -20,7 +20,7 @@ namespace BookStore.Utility.ModelsValidation
             RuleFor(b => b.ISBN).NotEmpty();
             RuleFor(b => b.Title).NotEmpty();
             RuleFor(b => b.PublicationYear).NotEmpty().GreaterThan(0);
-            RuleFor(b => b.PurchasePrice).NotEmpty().WithMessage("'Price' must be greater than {PropertyValue}.");
+            RuleFor(b => b.Price).NotEmpty().WithMessage("'Price' must be greater than {PropertyValue}.");
             RuleFor(b => b.Publisher).NotEmpty();
             RuleFor(b => b.Quantity).NotEmpty().GreaterThan(0);
             RuleFor(b => b.Status).NotEmpty();

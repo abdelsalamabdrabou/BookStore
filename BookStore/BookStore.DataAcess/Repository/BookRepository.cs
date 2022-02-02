@@ -30,10 +30,10 @@ namespace BookStore.DataAcess.Repository
                 getBookFromDb.PublicationYear = book.PublicationYear;
                 getBookFromDb.Edition = book.Edition;
                 getBookFromDb.CategoryId = book.CategoryId;
-                getBookFromDb.PurchasePrice = book.PurchasePrice;
+                getBookFromDb.Price = book.Price;
                 getBookFromDb.ImageUrl = book.ImageUrl;
                 getBookFromDb.Description = book.Description;
-                getBookFromDb.OfferingPrice = book.OfferingPrice;
+                getBookFromDb.DiscountRate = book.DiscountRate;
                 getBookFromDb.Status = book.Status;
                 getBookFromDb.Quantity = book.Status == Status.InStock.ToString().ToLower() ? book.Quantity : 0;
             }

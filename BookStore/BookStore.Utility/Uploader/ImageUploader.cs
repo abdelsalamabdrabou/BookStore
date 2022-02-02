@@ -19,32 +19,73 @@ namespace BookStore.Utility.Uploader
             rootPath = _hostEnvironment.WebRootPath;
         }
 
-        public async Task<string> Upload(IFormFileCollection files, string folderName)
+        public static string FileName { get; private set; }
+        public static string FileExtension { get; private set; }
+        public static string FileNameWithExtension { get; private set; }
+        public static string FilePath { get; private set; }
+        public static string FolderPath { get; private set; }
+        public static string StreamPath { get; private set; }
+
+        public async Task<string> Upload(IFormFileCollection files, string folderPath)
         {
-            IFormFile image = files[0];
-            string imageName = Guid.NewGuid().ToString();
-            string imageExtension = Path.GetExtension(image.FileName);
+            if (files.Count == 0)
+                return null;
 
-            folderName = folderName.TrimStart('\\');
-            string streamPath = Path.Combine(rootPath, folderName, imageName + imageExtension);
+            IFormFile file = files[0];
 
-            using var fileStream = new FileStream(streamPath, FileMode.Create);
-            await image.CopyToAsync(fileStream);
-            await fileStream.DisposeAsync();
+            FileConfigurations(file, folderPath);
+            await CreateCopyStreamAsync(file, StreamPath);
 
-            string imagePath = @"\" + Path.Combine(folderName, imageName + imageExtension);
-            return imagePath;
+            return FilePath;
         }
 
-        public void Delete(string previousImgUrl)
+        public void FileConfigurations(IFormFile file, string folderPath)
         {
-            if (previousImgUrl != null)
+            FolderPath = folderPath.TrimStart('\\');
+            FileName = Guid.NewGuid().ToString();
+            FileExtension = Path.GetExtension(file.FileName);
+            FileNameWithExtension = FileName + FileExtension;
+            StreamPath = Path.Combine(rootPath, FolderPath, FileNameWithExtension);
+            FilePath = @"\" + Path.Combine(FolderPath, FileNameWithExtension);
+        }
+
+        public async Task CreateCopyStreamAsync(IFormFile file,string streamPath)
+        {
+            using var fileStream = new FileStream(streamPath, FileMode.Create);
+            await file.CopyToAsync(fileStream);
+            await fileStream.DisposeAsync();
+        }
+
+        public void Delete(string imageUrl)
+        {
+            File.Delete(imageUrl);           
+        }
+
+        public bool IsExist(string imageUrl)
+        {
+            if (imageUrl != null)
             {
-                previousImgUrl = previousImgUrl.TrimStart('\\');
-                string imgPath = Path.Combine(rootPath, previousImgUrl);
-                if (File.Exists(imgPath))                
-                    File.Delete(imgPath);                
+                imageUrl = imageUrl.TrimStart('\\');
+                string imgPath = Path.Combine(rootPath, imageUrl);
+                if (File.Exists(imgPath))
+                    return true;
             }
-        } 
+
+            return false;
+        }
+
+        public async Task<string> Update(IFormFileCollection files, string fileUrl, string folderPath)
+        {
+            if (files.Count > 0)
+            {
+                fileUrl = fileUrl.TrimStart('\\');
+                string filePath = Path.Combine(rootPath, fileUrl);
+
+                Delete(filePath);
+                return await Upload(files, folderPath);
+            }
+
+            return null;
+        }
     }
 }

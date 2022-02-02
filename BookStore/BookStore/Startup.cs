@@ -1,6 +1,7 @@
 using BookStore.Data;
 using BookStore.DataAcess.Repository;
 using BookStore.DataAcess.Repository.IRepository;
+using BookStore.Models;
 using BookStore.Utility.ModelsValidation;
 using BookStore.Utility.Services;
 using FluentValidation.AspNetCore;
@@ -39,7 +40,7 @@ namespace BookStore
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();

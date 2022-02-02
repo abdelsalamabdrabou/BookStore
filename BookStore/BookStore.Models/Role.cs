@@ -9,7 +9,7 @@ namespace BookStore.Models
 {
     public class Role
     {
-        [Required, StringLength(256), Display(Name = "Role Name")]
+        [Required, StringLength(256), Display(Name = "Role")]
         public string Name { get; set; }
     }
 }

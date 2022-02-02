@@ -8,6 +8,7 @@ namespace BookStore.Utility.ConstantsStringSettings
 {
     public static class FolderPaths
     {
-        public const string book = @"img\books";
+        public const string book = @"images\books";
+        public const string profile = @"images\profiles";
     }
 }
