@@ -26,8 +26,22 @@ using BookStore.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\Areas\Customer\Views\_ViewImports.cshtml"
+using BookStore.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\Areas\Customer\Views\_ViewImports.cshtml"
+using BookStore.Utility.ConstantsStringSettings;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"444cc2349a15e137aa08986277125a94c8854df6", @"/Areas/Customer/Views/Checkout/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42c9fe99ca73f7fcb066a804dfbeb4b9cceadc84", @"/Areas/Customer/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"52bb4d9c908cb6a118156e9708711c5c328c7a6b", @"/Areas/Customer/Views/_ViewImports.cshtml")]
     public class Areas_Customer_Views_Checkout_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

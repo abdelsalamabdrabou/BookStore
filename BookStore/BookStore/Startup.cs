@@ -47,6 +47,15 @@ namespace BookStore
 
             services.AddControllersWithViews();
 
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(5);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddFluentValidation(fv =>
             {
                 fv.RegisterValidatorsFromAssemblyContaining<CategoryValidator>(lifetime: ServiceLifetime.Singleton);
@@ -59,6 +68,8 @@ namespace BookStore
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+
+            services.AddSession();
 
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
@@ -87,6 +98,8 @@ namespace BookStore
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

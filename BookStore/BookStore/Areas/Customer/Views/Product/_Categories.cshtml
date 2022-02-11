@@ -1,23 +1,13 @@
-﻿<div class=" rsidebar span_1_of_left">
+﻿@model IEnumerable<Category>
+
+<div class=" rsidebar span_1_of_left">
 	<div class="of-left">
 		<h3 class="cate">Categories</h3>
 	</div>
 	<ul class="menu">
-		<li class="item1">
-			<a href="#">Men </a>
-			<ul class="cute">
-				<li class="subitem1"><a href="#">Cute Kittens </a></li>
-				<li class="subitem2"><a href="#">Strange Stuff </a></li>
-				<li class="subitem3"><a href="#">Automatic Fails </a></li>
-			</ul>
-		</li>
-		<li class="item2">
-			<a href="#">Women </a>
-			<ul class="cute">
-				<li class="subitem1"><a href="#">Cute Kittens </a></li>
-				<li class="subitem2"><a href="#">Strange Stuff </a></li>
-				<li class="subitem3"><a href="#">Automatic Fails </a></li>
-			</ul>
-		</li>
+		@foreach(var category in Model)
+		{
+			<li class="item1"><a href="#">@category.Name</a></li>
+		}
 	</ul>
 </div>

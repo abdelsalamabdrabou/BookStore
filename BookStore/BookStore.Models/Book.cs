@@ -23,6 +23,7 @@ namespace BookStore.Models
         public string Status { get; set; }
 		public double OfferingPrice { get; set; }
 		public int CategoryId { get; set; }
-        public Category Category { get; set; }        
+        public Category Category { get; set; }
+        public List<Cart> Carts { get; set; }
     }
 }

@@ -1,6 +1,17 @@
-﻿@inject SignInManager<ApplicationUser> SignInManager
+﻿@using BookStore.DataAcess.Repository.IRepository
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IUnitOfWork UnitOfWork;
 
+@{
+	ViewData["Title"] = "E-Book";
+	var user = await UserManager.GetUserAsync(User);
+	var cartCount = 0;
+	
+	if (user != null)
+		cartCount = UnitOfWork.Cart.GetAllAsync(c => c.UserId == user.Id).Result.Count();
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,12 +104,11 @@
 						}
 					</ul>
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a asp-area="Customer" asp-controller="Cart" asp-action="Index">
 						<h3> <div class="total">
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+							(<span>@cartCount</span> items)</div>
 							<img src="~/images/cart.png" alt=""/></h3>
 						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 					</div>
 				</div>
 				<div class="clearfix"> </div>
@@ -229,6 +239,8 @@
         }
 
         $(".memenu").memenu();
+
+		localStorage.setItem("cartCount", @cartCount);
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

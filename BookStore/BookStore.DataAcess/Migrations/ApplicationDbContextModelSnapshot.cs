@@ -157,6 +157,37 @@ namespace BookStore.DataAcess.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("BookStore.Models.Cart", b =>
+                {
+                    b.Property<Guid>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CartId")
+                        .HasName("PK_CartId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -321,6 +352,25 @@ namespace BookStore.DataAcess.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("BookStore.Models.Cart", b =>
+                {
+                    b.HasOne("BookStore.Models.Book", "Book")
+                        .WithMany("Carts")
+                        .HasForeignKey("BookId")
+                        .HasConstraintName("FK_BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.ApplicationUser", "User")
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserId");
+
+                    b.Navigation("Book");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -370,6 +420,16 @@ namespace BookStore.DataAcess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BookStore.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Carts");
+                });
+
+            modelBuilder.Entity("BookStore.Models.Book", b =>
+                {
+                    b.Navigation("Carts");
                 });
 
             modelBuilder.Entity("BookStore.Models.Category", b =>

@@ -21,9 +21,11 @@ namespace BookStore.Data
             base.OnModelCreating(builder);
             new CategoryTypeConfiguration().Configure(builder.Entity<Category>());
             new BookTypeConfiguration().Configure(builder.Entity<Book>());
+            new CartTypeConfiguration().Configure(builder.Entity<Cart>());
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
     }
 }

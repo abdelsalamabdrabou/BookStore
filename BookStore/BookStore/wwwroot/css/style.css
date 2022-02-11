@@ -441,7 +441,7 @@ height: 35px;
   background-size: 100% 100%;
   top: 0px;
   margin: 0;
-  min-height: 356px;
+  height: 100%;
 }
 .grid-top:hover .b-from-left{
 	left:0;
@@ -1152,7 +1152,7 @@ ul.tag-men li{
 ul.tag-men li span.women1{
 	  margin-left: 9em;
 }
-a.add-cart {
+button.add-cart {
   text-decoration: none;
   color: #fff;
   background: #EF5F21;
@@ -1162,7 +1162,7 @@ a.add-cart {
   margin-top: 2em;
   display: inline-block;
 }
-a.add-cart:hover {
+button.add-cart:hover {
   background:#000;
   
 }

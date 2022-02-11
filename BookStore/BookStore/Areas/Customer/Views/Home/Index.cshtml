@@ -1,5 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Book>
+
+@{
+	ViewData["Title"] = "Home Page";
+	var firstLineBooks = Model.Take(3);
+	var secondLineBooks = Model.Skip(3);
 }
 
 @section Banner{
@@ -41,75 +45,37 @@
 <div class="content-top">
 	<h1>NEW RELEASED</h1>
 	<div class="grid-in">
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>T-Shirt</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">Contrary to popular</a></p>
-		</div>
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi1.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>Shoe</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">classical Latin</a></p>
-		</div>
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi2.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>Bag</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">undoubtable</a></p>
-		</div>
+		@foreach (var book in firstLineBooks)
+		{
+			<div class="col-md-4 grid-top">
+				<a asp-controller="Product" asp-action="Index" asp-route-id="@book.BookId" class="b-link-stripe b-animate-go  thickbox">
+					<img class="img-responsive" src="@book.ImageUrl" alt="@book.Title">
+					<div class="b-wrapper">
+						<h3 class="b-animate b-from-left b-delay03 ">
+							<span>@book.Category.Name</span>
+						</h3>
+					</div>
+				</a>
+				<p style="line-break:anywhere"><a href="single.html">@book.Title</a></p>
+			</div>
+		}
 		<div class="clearfix"> </div>
 	</div>
 	<div class="grid-in">
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi3.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>Shirt</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">suffered alteration</a></p>
-		</div>
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi4.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>Bag</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">Content here</a></p>
-		</div>
-		<div class="col-md-4 grid-top">
-			<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-				<img class="img-responsive" src="images/pi5.jpg" alt="">
-				<div class="b-wrapper">
-					<h3 class="b-animate b-from-left    b-delay03 ">
-						<span>Shoe</span>
-					</h3>
-				</div>
-			</a>
-			<p><a href="single.html">readable content</a></p>
-		</div>
+		@foreach (var book in secondLineBooks)
+		{
+			<div class="col-md-4 grid-top">
+				<a asp-controller="Product" asp-action="Index" asp-route-id="@book.BookId" class="b-link-stripe b-animate-go  thickbox">
+					<img class="img-responsive" src="@book.ImageUrl" alt="@book.Title">
+					<div class="b-wrapper">
+						<h3 class="b-animate b-from-left b-delay03 ">
+							<span>@book.Category.Name</span>
+						</h3>
+					</div>
+				</a>
+				<p style="line-break:anywhere"><a href="single.html">@book.Title</a></p>
+			</div>
+		}
 		<div class="clearfix"> </div>
 	</div>
 </div>

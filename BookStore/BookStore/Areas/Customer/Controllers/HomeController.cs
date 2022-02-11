@@ -1,4 +1,5 @@
-﻿using BookStore.Models;
+﻿using BookStore.DataAcess.Repository.IRepository;
+using BookStore.Models;
 using BookStore.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,27 @@ namespace BookStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var books = _unitOfWork.Book.GetAllAsync(b => b.Price > 0, b => b.Category).Result.Select(b => new Book
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Price = b.Price,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl,
+                Category = b.Category
+            }).Take(6);
+
+            return View(books);
         }
 
         public IActionResult Privacy()

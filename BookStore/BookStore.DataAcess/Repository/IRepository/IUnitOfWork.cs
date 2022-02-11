@@ -10,7 +10,7 @@ namespace BookStore.DataAcess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         IBookRepoistory Book { get; }
-        IApplicationUserRepository ApplicationUser { get; }
+        ICartRepoistory Cart { get; }
         Task DisposeAsync();
         Task SaveAsync();
     }

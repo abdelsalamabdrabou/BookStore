@@ -1,24 +1,23 @@
-﻿<div class="product-bottom">
+﻿@model IEnumerable<Book>
+@{
+	char[] charsToTrim = {' ', ',', '.', '?', '!'};
+}
+
+<div class="product-bottom">
 	<div class="of-left-in">
 		<h3 class="best">Best Sellers</h3>
 	</div>
-	<div class="product-go">
-		<div class=" fashion-grid">
-			<a href="#"><img class="img-responsive " src="~/images/p1.jpg" alt=""></a>									
+	@foreach(var book in Model)
+	{
+		<div class="product-go">
+			<div class=" fashion-grid">
+				<a asp-controller="Product" asp-action="Index" asp-route-id="@book.BookId"><img class="img-responsive" src="@book.ImageUrl" alt="@book.Title"></a>									
+			</div>
+			<div class=" fashion-grid1">
+				<h6 class="best2"><a href="#" >@String.Join(" ", book.Description.Split(' ').Take(10)).TrimEnd(charsToTrim).</a></h6>								
+				<span class=" price-in1">@String.Format("{0:C}", book.Price)</span>
+			</div>								
 		</div>
-		<div class=" fashion-grid1">
-			<h6 class="best2"><a href="#" >Lorem ipsum dolor sitamet consectetuer</a></h6>								
-			<span class=" price-in1"> $40.00</span>
-		</div>								
-	</div>
-	<div class="clearfix"></div>
-	<div class="product-go">
-		<div class=" fashion-grid">
-			<a href="#"><img class="img-responsive " src="~/images/p2.jpg" alt=""></a>									
-		</div>
-		<div class="fashion-grid1">
-			<h6 class="best2"><a href="#" >Lorem ipsum dolor sitamet consectetuer </a></h6>								
-			<span class=" price-in1"> $40.00</span>
-		</div>								
-	</div>
+		<div class="clearfix"></div>
+	}
 </div>

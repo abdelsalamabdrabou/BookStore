@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BookStore.DataAcess.Repository.IRepository
 {
-    public interface IApplicationUserRepository : IRepositoryAsync<ApplicationUser>
+    public interface ICartRepoistory : IRepositoryAsync<Cart>
     {
-        Task UpdateAsync(ApplicationUser user);
+        Task UpdateAsync(Cart cart);
     }
 }
