@@ -15,6 +15,8 @@ namespace BookStore.Models
         [Required]
         public string LastName { get; set; }
         public string ProfileImage { get; set; }
+
         public List<Cart> Carts { get; set; }
+        public List<OrderHeader> OrderHeaders { get; set; }
     }
 }

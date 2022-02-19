@@ -39,8 +39,7 @@ namespace BookStore.Areas.Customer.Controllers
                 Categories = _unitOfWork.Category.GetAllAsync().Result.Take(10)
             };
 
-            var discountPrice = productVM.Book.Price * Convert.ToDouble(productVM.Book.DiscountRate) / 100;
-            productVM.Book.OfferingPrice = productVM.Book.Price - discountPrice;
+            productVM.Book.OfferingPrice = productVM.Book.Price - (productVM.Book.Price * productVM.Book.DiscountRate / 100);
 
             return View(productVM);
         }

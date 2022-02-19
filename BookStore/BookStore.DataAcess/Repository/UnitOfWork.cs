@@ -19,11 +19,15 @@ namespace BookStore.DataAcess.Repository
             Category = new CategoryRepository(_db);
             Book = new BookRepository(_db);
             Cart = new CartRepository(_db);
+            OrderHeader = new OrderHeaderRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
         public IBookRepoistory Book { get; private set; }
         public ICartRepoistory Cart { get; private set; }
+        public IOrderHeaderRepoistory OrderHeader { get; private set; }
+        public IOrderDetailRepoistory OrderDetail { get; private set; }
 
         public async Task DisposeAsync()
         {

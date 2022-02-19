@@ -14,7 +14,6 @@ C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\b
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\bin\Debug\net5.0\BookStore.Models.dll
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\bin\Debug\net5.0\ref\BookStore.Models.dll
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\bin\Debug\net5.0\BookStore.Models.pdb
-C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.csproj.AssemblyReference.cache
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.AssemblyInfoInputs.cache
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.AssemblyInfo.cs
@@ -22,3 +21,4 @@ C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\o
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.dll
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\ref\BookStore.Models.dll
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.pdb
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.csproj.AssemblyReference.cache

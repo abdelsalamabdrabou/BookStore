@@ -112,10 +112,10 @@ namespace BookStore.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DiscountRate")
+                    b.Property<double>("DiscountRate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
+                        .HasColumnType("float")
+                        .HasDefaultValue(0.0);
 
                     b.Property<string>("Edition")
                         .IsRequired()
@@ -207,6 +207,101 @@ namespace BookStore.DataAcess.Migrations
                         .HasName("PK_CategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BookStore.Models.OrderDetail", b =>
+                {
+                    b.Property<Guid>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("OrderDetailId", "BookId", "OrderId")
+                        .HasName("PK_OrderHeaderBookOrderId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("BookStore.Models.OrderHeader", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BillingAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProcessedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ShippingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalOrder")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TrackingNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Zip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderId")
+                        .HasName("PK_OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OrderHeaders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -371,6 +466,37 @@ namespace BookStore.DataAcess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BookStore.Models.OrderDetail", b =>
+                {
+                    b.HasOne("BookStore.Models.Book", "Book")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("BookId")
+                        .HasConstraintName("FK_OrderDetailBookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookStore.Models.OrderHeader", "OrderHeader")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .HasConstraintName("FK_OrderDetailOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("OrderHeader");
+                });
+
+            modelBuilder.Entity("BookStore.Models.OrderHeader", b =>
+                {
+                    b.HasOne("BookStore.Models.ApplicationUser", "User")
+                        .WithMany("OrderHeaders")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserIdOrderId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -425,16 +551,25 @@ namespace BookStore.DataAcess.Migrations
             modelBuilder.Entity("BookStore.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("OrderHeaders");
                 });
 
             modelBuilder.Entity("BookStore.Models.Book", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("BookStore.Models.Category", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BookStore.Models.OrderHeader", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,167 +1,134 @@
-﻿@{
-    ViewData["Title"] = "Checkout";
+﻿@using Microsoft.AspNetCore.Identity
+@model OrderVM
+@inject UserManager<ApplicationUser> UserManager;
+@{
+	ViewData["Title"] = "Checkout";
+	var user = await UserManager.GetUserAsync(User);
+	var username = user.FirstName + " " + user.LastName;
+	double totalOrder = 0;
+	int cartIndex = -1;
 }
 
-<div class="col-md-7">
-    <!-- Billing Details -->
-    <div class="billing-details">
-        <div class="section-title">
-            <h3 class="title">Billing address</h3>
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="first-name" placeholder="First Name">
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="last-name" placeholder="Last Name">
-        </div>
-        <div class="form-group">
-            <input class="input" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="address" placeholder="Address">
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="city" placeholder="City">
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="country" placeholder="Country">
-        </div>
-        <div class="form-group">
-            <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-        </div>
-        <div class="form-group">
-            <input class="input" type="tel" name="tel" placeholder="Telephone">
-        </div>
-        <div class="form-group">
-            <div class="input-checkbox">
-                <input type="checkbox" id="create-account">
-                <label for="create-account">
-                    <span></span>
-                    Create Account?
-                </label>
-                <div class="caption">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                    <input class="input" type="password" name="password" placeholder="Enter Your Password">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Billing Details -->
-    <!-- Shiping Details -->
-    <div class="shiping-details">
-        <div class="section-title">
-            <h3 class="title">Shiping address</h3>
-        </div>
-        <div class="input-checkbox">
-            <input type="checkbox" id="shiping-address">
-            <label for="shiping-address">
-                <span></span>
-                Ship to a diffrent address?
-            </label>
-            <div class="caption">
-                <div class="form-group">
-                    <input class="input" type="text" name="first-name" placeholder="First Name">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="text" name="last-name" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="email" name="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="text" name="address" placeholder="Address">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="text" name="city" placeholder="City">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="text" name="country" placeholder="Country">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                </div>
-                <div class="form-group">
-                    <input class="input" type="tel" name="tel" placeholder="Telephone">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Shiping Details -->
-    <!-- Order notes -->
-    <div class="order-notes">
-        <textarea class="input" placeholder="Order Notes"></textarea>
-    </div>
-    <!-- /Order notes -->
-</div>
+<form method="post" class="form-horizontal">
+	<div class="container" style="margin-top:10px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-sm-9">
+						<h3 class="panel-title">Order Summary</h3>
+					</div>
+					<div class="col-sm-3">
+						<a style="border:#9ca9d0 solid 1px;" asp-action="Index" asp-controller="Cart" class="btn btn-outline-info btn-sm">Back to Cart</a>
+					</div>
+				</div>
+			</div>
+			 <div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="container row">
+							<h4 class="mb-3 ml-6" style="text-transform:uppercase;">
+								<span class="text-info">Shipping Details:</span>
+							</h4>
+						</div>
+						<div class="form-group" style="margin-top: 10px;">
+							<label class="col-sm-2 control-label">Name</label>
+							<div class="col-sm-10">
+								<input readonly type="text" class="form-control" value="@username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.PhoneNumber"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.PhoneNumber">
+								<span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.Street"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.Street">
+								<span asp-validation-for="OrderHeader.Street" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.City"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.City">
+								<span asp-validation-for="OrderHeader.City" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.State"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.State">
+								<span asp-validation-for="OrderHeader.State" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.Zip"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.Zip">
+								<span asp-validation-for="OrderHeader.Zip" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" asp-for="OrderHeader.BillingAddress"></label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" asp-for="OrderHeader.BillingAddress">
+								<span asp-validation-for="OrderHeader.BillingAddress" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="container row">
+							<h4 class="mb-3 ml-6" style="text-transform:uppercase;">
+								<span class="text-info">Order Summary:</span>
+							</h4>
+						</div>
+						<ul class="list-group mb-3">
+						   @foreach (var cart in Model.Carts)
+						   {
+								totalOrder += cart.Price * cart.Count;
+								cartIndex++;
 
-<!-- Order Details -->
-<div class="col-md-5 order-details">
-    <div class="section-title text-center">
-        <h3 class="title">Your Order</h3>
-    </div>
-    <div class="order-summary">
-        <div class="order-col">
-            <div><strong>PRODUCT</strong></div>
-            <div><strong>TOTAL</strong></div>
-        </div>
-        <div class="order-products">
-            <div class="order-col">
-                <div>1x Product Name Goes Here</div>
-                <div>$980.00</div>
-            </div>
-            <div class="order-col">
-                <div>2x Product Name Goes Here</div>
-                <div>$980.00</div>
-            </div>
-        </div>
-        <div class="order-col">
-            <div>Shiping</div>
-            <div><strong>FREE</strong></div>
-        </div>
-        <div class="order-col">
-            <div><strong>TOTAL</strong></div>
-            <div><strong class="order-total">$2940.00</strong></div>
-        </div>
-    </div>
-    <div class="payment-method">
-        <div class="input-radio">
-            <input type="radio" name="payment" id="payment-1">
-            <label for="payment-1">
-                <span></span>
-                Direct Bank Transfer
-            </label>
-            <div class="caption">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
-        <div class="input-radio">
-            <input type="radio" name="payment" id="payment-2">
-            <label for="payment-2">
-                <span></span>
-                Cheque Payment
-            </label>
-            <div class="caption">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
-        <div class="input-radio">
-            <input type="radio" name="payment" id="payment-3">
-            <label for="payment-3">
-                <span></span>
-                Paypal System
-            </label>
-            <div class="caption">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
-    </div>
-    <div class="input-checkbox">
-        <input type="checkbox" id="terms">
-        <label for="terms">
-            <span></span>
-            I've read and accept the <a href="#">terms & conditions</a>
-        </label>
-    </div>
-    <a href="#" class="primary-btn order-submit">Place order</a>
-</div>
-<!-- /Order Details -->
+							   <li class="list-group-item d-flex justify-content-between">
+									<div>
+										<h6 class="my-0">@cart.Title</h6>
+										<small class="text-muted">Quantity: @cart.Count</small>
+									</div>
+									<span class="text-muted">Price: @((cart.Price * cart.Count).ToString("C"))</span>									
+								</li>
+
+								<input asp-for="Carts[cartIndex].BookId" value="@Model.Carts[cartIndex].BookId" type="hidden" />
+								<input asp-for="Carts[cartIndex].Price" value="@Model.Carts[cartIndex].Price" type="hidden" />
+								<input asp-for="Carts[cartIndex].Count" value="@Model.Carts[cartIndex].Count" type="hidden" />
+						   }
+
+								<li class="list-group-item d-flex justify-content-between bg-light">
+									<small class="text-info">Total (USD)</small>
+									<strong class="text-info">@totalOrder.ToString("C")</strong>
+									<input asp-for="OrderHeader.TotalOrder" value="@totalOrder" type="hidden">
+								</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-12 col-md-8 pt-2">
+						<p style="color:maroon; font-size:14px;">Estimate Arrival Date:
+						@DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()	
+						</p>
+					</div>
+					<div class="col-12 col-md-4">
+						<button asp-action="Index" type="submit" class="btn btn-primary form-control">Place Order</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}

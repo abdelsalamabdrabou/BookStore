@@ -11,6 +11,8 @@ namespace BookStore.DataAcess.Repository.IRepository
         ICategoryRepository Category { get; }
         IBookRepoistory Book { get; }
         ICartRepoistory Cart { get; }
+        IOrderHeaderRepoistory OrderHeader { get; }
+        IOrderDetailRepoistory OrderDetail { get; }
         Task DisposeAsync();
         Task SaveAsync();
     }

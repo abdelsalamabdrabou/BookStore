@@ -9,6 +9,13 @@ namespace BookStore.Utility.ConstantsStringSettings
     public enum Status
     {
         InStock,
-        OutOfStock
+        OutOfStock,
+        Pending,
+        Approved,
+        Rejected,
+        Processing,
+        Cancelled,
+        Refunded,
+        Shipped
     }
 }

@@ -28,6 +28,24 @@ namespace BookStore.Areas.Customer.Controllers
 
             return View(carts);
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(Cart cart)
+        {
+            if (ModelState.IsValid)
+            {
+                await _unitOfWork.Cart.UpdateAsync(cart);
+                await _unitOfWork.SaveAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                var cartModel = await _unitOfWork.Cart.GetFirstOrDefaultAsync(c => c.CartId == cart.CartId);
+                return View(cartModel);
+            }
+        }
+
 
         #region APIs
         [HttpDelete]

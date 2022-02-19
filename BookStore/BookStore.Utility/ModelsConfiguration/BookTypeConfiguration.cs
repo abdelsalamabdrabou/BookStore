@@ -14,8 +14,8 @@ namespace BookStore.Utility.ModelsConfiguration
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasKey(b => b.BookId).HasName("PK_BookId");
-            builder.HasOne(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId).HasConstraintName("FK_CategoryId");
             builder.Property(b => b.BookId).ValueGeneratedOnAdd();
+            builder.HasOne(b => b.Category).WithMany(c => c.Books).HasForeignKey(b => b.CategoryId).HasConstraintName("FK_CategoryId");
             builder.Property(b => b.ISBN).IsRequired();
             builder.Property(b => b.Author).IsRequired();
             builder.Property(b => b.Description).IsRequired();
