@@ -17,5 +17,15 @@ namespace BookStore.DataAcess.Repository
         {
             _db = db;
         }
+        public async Task UpdateAsync(OrderHeader orderHeader, string orderStatus, string paymentStatus)
+        {
+            var getOrderHeaderFromDb = await _db.OrderHeaders.FindAsync(orderHeader.OrderId);
+            if (getOrderHeaderFromDb != null)
+            {
+                getOrderHeaderFromDb.OrderStatus = orderStatus;
+                getOrderHeaderFromDb.PaymentStatus = paymentStatus;
+                getOrderHeaderFromDb.PaymentDate = DateTime.Now;
+            }
+        }
     }
 }

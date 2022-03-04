@@ -16,6 +16,7 @@ namespace BookStore.Utility.ConstantsStringSettings
         Processing,
         Cancelled,
         Refunded,
-        Shipped
+        Shipped,
+        Paid
     }
 }

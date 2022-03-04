@@ -9,6 +9,6 @@ namespace BookStore.DataAcess.Repository.IRepository
 {
     public interface IOrderHeaderRepoistory : IRepositoryAsync<OrderHeader>
     {
-        
+        Task UpdateAsync(OrderHeader orderHeader, string orderStatus, string paymentStatus);
     }
 }

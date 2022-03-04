@@ -49,7 +49,7 @@ namespace BookStore.Areas.Customer.Controllers
                 await ConfigureOrderDetail(carts, orderHeader.OrderId);
 
                 // Payment
-                CreateCheckoutSession(carts, orderHeader);
+                await CreateCheckoutSession(carts, orderHeader);
 
                 await _unitOfWork.SaveAsync();
                 return new StatusCodeResult(303);
@@ -81,7 +81,6 @@ namespace BookStore.Areas.Customer.Controllers
             orderHeader.OrderStatus = Status.Pending.ToString();
             orderHeader.OrderDate = DateTime.Now;
             orderHeader.PaymentStatus = Status.Pending.ToString();
-            orderHeader.PaymentDate = DateTime.Now;
             orderHeader.TrackingNumber = Tracking.GenerateNumber();
             orderHeader.UserId = userId;
 
@@ -104,7 +103,7 @@ namespace BookStore.Areas.Customer.Controllers
             await _unitOfWork.OrderDetail.AddRangeAsync(orderDetails);
         }
 
-        public void CreateCheckoutSession(List<CartVM> carts, OrderHeader orderHeader)
+        public async Task CreateCheckoutSession(List<CartVM> carts, OrderHeader orderHeader)
         {
             var options = new SessionCreateOptions
             {
@@ -114,7 +113,7 @@ namespace BookStore.Areas.Customer.Controllers
                     },
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment",
-                SuccessUrl = string.Format("https://{0}{1}?id={2}", Request.Host.Value, "OrderConfirmation", orderHeader.OrderId),
+                SuccessUrl = string.Format("https://{0}/Customer/OrderConfirmation?id={1}", Request.Host.Value, orderHeader.OrderId),
                 CancelUrl = string.Format("https://{0}{1}", Request.Host.Value, Request.Path.Value),
             };
 
@@ -139,7 +138,7 @@ namespace BookStore.Areas.Customer.Controllers
             }
 
             var service = new SessionService();
-            Session session = service.Create(options);
+            Session session = await service.CreateAsync(options);
 
             orderHeader.SessionId = session.Id;
             orderHeader.TransactionId = session.PaymentIntentId;
