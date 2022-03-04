@@ -27,7 +27,7 @@ namespace BookStore.Models
         public DateTime ShippingDate { get; set; }
         public string TrackingNumber { get; set; }
         public string TransactionId { get; set; }
-
+        public string SessionId { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }

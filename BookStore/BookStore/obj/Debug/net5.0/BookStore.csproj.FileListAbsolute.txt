@@ -480,3 +480,5 @@ C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debu
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\ref\BookStore.dll
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\BookStore.pdb
 C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\BookStore.genruntimeconfig.cache
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\bin\Debug\net5.0\Stripe.net.dll
+C:\Users\abdul\OneDrive\Desktop\BookStore\BookStore\BookStore\BookStore\obj\Debug\net5.0\Razor\Areas\Customer\Views\OrderConfirmation\Index.cshtml.g.cs

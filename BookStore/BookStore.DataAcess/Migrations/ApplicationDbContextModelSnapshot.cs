@@ -269,6 +269,9 @@ namespace BookStore.DataAcess.Migrations
                     b.Property<string>("ProcessedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SessionId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ShippingDate")
                         .HasColumnType("datetime2");
 

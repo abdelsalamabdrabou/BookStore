@@ -2,10 +2,13 @@
 using BookStore.Models;
 using BookStore.Models.ViewModels;
 using BookStore.Utility.ConstantsStringSettings;
-using Microsoft.AspNetCore.Identity;
+using BookStore.Utility.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,10 +19,12 @@ namespace BookStore.Areas.Customer.Controllers
     public class CheckoutController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _host;
         private static string userId;
-        public CheckoutController(IUnitOfWork unitOfWork)
+        public CheckoutController(IUnitOfWork unitOfWork, IWebHostEnvironment host)
         {
             _unitOfWork = unitOfWork;
+            _host = host;
         }
         
         public IActionResult Index()
@@ -39,16 +44,18 @@ namespace BookStore.Areas.Customer.Controllers
                 var orderHeader = orderVM.OrderHeader;
                 var carts = orderVM.Carts;
 
+                // Order
                 await ConfigureOrderHeader(orderHeader);
                 await ConfigureOrderDetail(carts, orderHeader.OrderId);
 
-                await _unitOfWork.SaveAsync();
+                // Payment
+                CreateCheckoutSession(carts, orderHeader);
 
-                return RedirectToAction("Index", "Home");
+                await _unitOfWork.SaveAsync();
+                return new StatusCodeResult(303);
             }
 
             orderVM = InitOrderVM();
-
             return View(orderVM);
         }
 
@@ -75,7 +82,7 @@ namespace BookStore.Areas.Customer.Controllers
             orderHeader.OrderDate = DateTime.Now;
             orderHeader.PaymentStatus = Status.Pending.ToString();
             orderHeader.PaymentDate = DateTime.Now;
-            orderHeader.TrackingNumber = GenerateTrackingNumber();
+            orderHeader.TrackingNumber = Tracking.GenerateNumber();
             orderHeader.UserId = userId;
 
             await _unitOfWork.OrderHeader.AddAsync(orderHeader);
@@ -97,15 +104,47 @@ namespace BookStore.Areas.Customer.Controllers
             await _unitOfWork.OrderDetail.AddRangeAsync(orderDetails);
         }
 
-        public string GenerateTrackingNumber()
+        public void CreateCheckoutSession(List<CartVM> carts, OrderHeader orderHeader)
         {
-            Random _random = new();
-            int num = _random.Next(1000, 1000000);
-            string generateUniqueId = Guid.NewGuid().ToString();
-            string uniqueId = generateUniqueId[..8];
-            string trackingNumber = string.Format("{0}-{1}", num, uniqueId);
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                    {
+                      "card",
+                    },
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = string.Format("https://{0}{1}?id={2}", Request.Host.Value, "OrderConfirmation", orderHeader.OrderId),
+                CancelUrl = string.Format("https://{0}{1}", Request.Host.Value, Request.Path.Value),
+            };
 
-            return trackingNumber;
+            foreach (var cart in carts)
+            {
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(cart.Price * 100),
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = cart.Title
+                        },
+
+                    },
+                    Quantity = cart.Count
+                };
+
+                options.LineItems.Add(sessionLineItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            orderHeader.SessionId = session.Id;
+            orderHeader.TransactionId = session.PaymentIntentId;
+
+            Response.Headers.Add("Location", session.Url);
         }
     }
 }

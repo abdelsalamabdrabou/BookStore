@@ -2,6 +2,7 @@ using BookStore.Data;
 using BookStore.DataAcess.Repository;
 using BookStore.DataAcess.Repository.IRepository;
 using BookStore.Models;
+using BookStore.Utility.ConstantsStringSettings;
 using BookStore.Utility.ModelsValidation;
 using BookStore.Utility.Services;
 using FluentValidation.AspNetCore;
@@ -15,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,16 +47,9 @@ namespace BookStore
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+
             services.AddControllersWithViews();
-
-
-            services.AddDistributedMemoryCache();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromDays(5);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
 
             services.AddFluentValidation(fv =>
             {
@@ -62,14 +57,12 @@ namespace BookStore
                 fv.RegisterValidatorsFromAssemblyContaining<BookValidator>(lifetime: ServiceLifetime.Singleton);
 
                 fv.ImplicitlyValidateChildProperties = true;
-                fv.DisableDataAnnotationsValidation = true;
+                fv.DisableDataAnnotationsValidation = false;
             });
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-
-            services.AddSession();
 
             services.Configure<SecurityStampValidatorOptions>(options =>
             {
@@ -96,10 +89,10 @@ namespace BookStore
 
             app.UseRouting();
 
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
