@@ -1,0 +1,30 @@
+﻿@model Search
+
+@{
+    ViewData["Search"] = "Order - Search";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Order Search</h4>
+                <form class="forms-sample" method="post">
+                    <div class="input-group mb-3">
+                        <input asp-for="Value" class="form-control" placeholder="Tracking Number" />
+                        <div class="input-group-append">
+                            <button asp-action="Search" type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                    <span class="text-danger">@Model.ErrorMessage</span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

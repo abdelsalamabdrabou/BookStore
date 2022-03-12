@@ -1,0 +1,91 @@
+﻿@using System.Security.Claims
+@model OrderHeader
+@{
+    ViewData["Title"] = "Order Details";
+    string username = $"{Model.User.FirstName} {Model.User.LastName}";
+    string address = $"{Model.Street}, {Model.City}, {Model.State}";
+    string processedId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+}
+
+<div class="row" id="orderDetails">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new Book</h4>
+                <form method="post">
+                    <input asp-for="OrderId" type="hidden" />
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Order Id</label>
+                            <input asp-for="OrderId" type="text" class="form-control text-success" disabled>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Tracking No.</label>
+                            <input asp-for="TrackingNumber" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Customer</label>
+                            <input asp-for="@username" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Phone</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Address</label>
+                            <input asp-for="@address" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Billing Address</label>
+                            <input asp-for="BillingAddress" type="text" class="form-control" disabled>
+                       </div>
+                    </div>
+                    <div class="form-row">                        
+                        <div class="form-group col-6">
+                            <label>Postal Code</label>
+                            <input asp-for="Zip" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Total Order</label>
+                            <input asp-for="TotalOrder" type="text" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Order Status</label>
+                            <div class="input-group">                                   
+                                <select asp-for="OrderStatus" class="form-control">
+                                    <option>Shipped</option>
+                                    <option>Declined</option>
+                                    <option>Approved</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button asp-action="Update" class="btn btn-outline-success" type="submit">Update</button>
+                                    <input asp-for="ProcessedBy" value="@processedId" type="hidden" />
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Order Date</label>
+                            <input asp-for="OrderDate" type="text" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label>Payment Status</label>
+                            <input asp-for="PaymentStatus" type="text" class="form-control" disabled>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Payment Date</label>
+                            <input asp-for="PaymentDate" type="text" class="form-control" disabled>
+                        </div>                   
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

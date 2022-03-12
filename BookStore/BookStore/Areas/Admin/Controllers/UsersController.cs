@@ -12,8 +12,8 @@ namespace BookStore.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        public UsersController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public UsersController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;

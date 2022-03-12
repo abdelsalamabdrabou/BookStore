@@ -12,3 +12,7 @@
     border: 2px dotted #dcdcdc;
     margin-top: 16px;
 }
+
+#orderDetails input:disabled {
+    background: white;
+}

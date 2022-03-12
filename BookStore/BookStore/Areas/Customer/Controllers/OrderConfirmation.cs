@@ -64,7 +64,7 @@ namespace BookStore.Areas.Customer.Controllers
 
             if (session.PaymentStatus == Status.Paid.ToString().ToLower())
             {
-                await _unitOfWork.OrderHeader.UpdateAsync(orderHeader, Status.Approved.ToString(), Status.Approved.ToString());
+                await _unitOfWork.OrderHeader.UpdateAsync(orderHeader.OrderId, Status.Approved.ToString(), Status.Approved.ToString());
                 await RemoveCarts(orderHeader.UserId);
                 await _unitOfWork.SaveAsync();
             }
